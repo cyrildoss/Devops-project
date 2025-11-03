@@ -36,6 +36,7 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		PrintWriter out = response.getWriter();
+		int password = "1234rty"
 		out.println("<html>");
 		out.println("<head>");
 	out.println("</head>");
