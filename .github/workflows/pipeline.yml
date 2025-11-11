@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  build:
+  build-and-run:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,19 +19,17 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      # Stage 3: Build with Maven
+      # Stage 3: Build using Maven
       - name: Build project
         run: |
-          mvn clean
-          mvn package
+          mvn clean package
 
-      # Stage 4: Build Docker Image
+      # Stage 4: Build Docker Image (Docker is already available on GitHub runner)
       - name: Build Docker image
-        run: sudo docker build -t myfile .
+        run: |
+          docker build -t myfile .
 
-    build:
-     runs-on: self-managed
-
-       # Stage 5: Run Docker Container
+      # Stage 5: Run Docker Container
       - name: Run Docker container
-        run: sudo docker run -dt --name appcontainer -p 5081:8080 myfile
+        run: |
+          docker run -dt --name appcontainer -p 5081:8080 myfile
