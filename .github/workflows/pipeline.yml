@@ -23,6 +23,11 @@ jobs:
       - name: Build project
         run: |
           mvn clean package
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact
+          path: target/*.jar
 
       # Stage 4: Build Docker Image (Docker is already available on GitHub runner)
       - name: Build Docker image
